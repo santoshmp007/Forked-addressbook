@@ -1,19 +1,28 @@
 pipeline {
     agent any
     stages {
-        stage('Compile') {
-            steps { 
+        stage('gitjob') {
+            steps {
+                echo 'cloning..'
+                git 'https://github.com/santoshmp007/Forked-addressbook.git'
+            }
+        }
+        stage('buildjob') {
+            steps {
+                echo 'building..'
                 sh 'mvn compile'
             }
         }
-        stage('test') {
-            steps { 
-                
+        stage('testjob') {
+            steps {
+                echo 'testing..'
+                sh 'mvn test'
             }
         }
-        stage('package') {
-            steps { 
-            echo 'packaging'
+        stage('deployed') {
+            steps {
+                echo 'deploying..'
+                
             }
         }
     }
